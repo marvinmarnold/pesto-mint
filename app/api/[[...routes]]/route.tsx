@@ -66,14 +66,14 @@ const app = new Frog({
   basePath: "/api",
 });
 
-app.use(
-  "/ad",
-  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "ad" }),
-);
-app.use(
-  "/finish",
-  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" }),
-);
+// app.use(
+//   "/ad",
+//   fdk.analyticsMiddleware({ frameId: "hats-store", customId: "ad" }),
+// );
+// app.use(
+//   "/finish",
+//   fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" }),
+// );
 
 // app analytics...
 
@@ -181,6 +181,9 @@ app.transaction("/buy/:price", async (c) => {
   
   const price = c.req.param('price')
 
+  console.log("Executing buy transaction")
+  console.log("Price: ", price)
+  console.log("Frame Data: ", c.frameData)
   return c.contract({
     abi: abi.output.abi,
     // @ts-ignore
